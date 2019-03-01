@@ -25,13 +25,16 @@ docker build . --tag=demo-front:latest --rm=true
   kubectl edit -f variable.yaml
  
  
-deploy in yaml in minikube
+deploy  yaml in minikube
   kubectl delete deployment demo-front
   kubectl delete service demo-front
   kubectl create -f frontend-deployment.yaml --v=7 --alsologtostderr
  
 
 
-get tjhe env variale list after deployment 
+get the env variable list after deployment 
+
 kubectl get pods
+
 kubectl exec demo-front-855f5fcff9-7fpd7 -xsvnb env
+
