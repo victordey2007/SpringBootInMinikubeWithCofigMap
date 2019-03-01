@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-front
+spec:
+  selector:
+    app: demo-front
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30006
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-front
+spec:
+  selector:
+      matchLabels:
+        app: demo-front
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-front
+    spec:
+      containers:
+        - name: demo-front
+          image: demo-front:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MY_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: mylocalvariable 
+                  key: MY_EMAIL_ENV

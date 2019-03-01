@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mylocalvariable
+  namespace: default
+data:
+  MY_EMAIL_ENV: victor.dey@jetblue.com
